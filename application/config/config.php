@@ -23,8 +23,9 @@ date_default_timezone_set('Asia/Makassar');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/monitoring_tools/';
-
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')) ? "https://" : "http://";
+$host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+$config['base_url'] = ($host === 'localhost') ? 'http://localhost/monitoring_tools/' : $protocol . $host . '/';
 /*
 |--------------------------------------------------------------------------
 | Index File
