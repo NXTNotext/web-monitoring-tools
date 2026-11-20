@@ -75,10 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'monitoring_tools',
+	'hostname' => $_ENV['MYSQLHOST'] ?? getenv('MYSQLHOST') ?: 'localhost',
+	'username' => $_ENV['MYSQLUSER'] ?? getenv('MYSQLUSER') ?: 'root',
+	'password' => $_ENV['MYSQLPASSWORD'] ?? getenv('MYSQLPASSWORD') ?: '',
+	'database' => $_ENV['MYSQLDATABASE'] ?? getenv('MYSQLDATABASE') ?: 'monitoring_tools',
+	'port'     => $_ENV['MYSQLPORT'] ?? getenv('MYSQLPORT') ?: 3306,
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
